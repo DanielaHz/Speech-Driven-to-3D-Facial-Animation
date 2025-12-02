@@ -1,5 +1,5 @@
 {
-  "name": "pixelmux-retargeting",
+  "name": "retargeting-plugin",
   "version-string": "0.1.0",
   "dependencies": [
     "gtest",

@@ -1,12 +1,10 @@
 #include "ActionUnit.h"
 #include <iostream>
-#include <bits/stdc++.h> 
 #include <nlohmann/json.hpp>
 #include <fstream>
-#include <iostream>
 #include <algorithm>
 
-bool ActionUnit::loadMuscleIndexMapFromJSON(const char* musclesJson)
+bool ActionUnit::loadMuscleIndexMapFromJSON(const char *musclesJson)
 {
     std::string filePathStr = std::string(musclesJson);
     std::ifstream file(filePathStr);
@@ -169,6 +167,7 @@ bool ActionUnit::loadModelPathsFromJSON(const char* pathsJson, const char* baseP
         auDelta.passiveMuscles = std::move(passive);
         m_auDeltaTable[auId].push_back(auDelta); 
     }
+    printauDeltaTable();
     return true;
 }
 
@@ -181,9 +180,10 @@ bool ActionUnit::saveDeltaTransfersToJSON(const char* outJsonPath)
     {
         for (auto const& auDelta : deltaList)
         {
+            std::string sideStr = sideToString(auDelta.side);
             nlohmann::ordered_json auJ = {
                 {"auId", auId},
-                {"side", auDelta.side},
+                {"side", sideStr},
                 {"activeMuscles", nlohmann::ordered_json::array()},
                 {"passiveMuscles", nlohmann::ordered_json::array()}
             };
@@ -244,7 +244,7 @@ int ActionUnit::parseAUId(const std::string& auKey)
 
 void ActionUnit::loadDeltaTransfersFromJSON(const char* deltaJson)
 {
-     // reading the json file
+    // reading the json file
     nlohmann::json root; 
     std::ifstream ifs(deltaJson);
     ifs >> root;
@@ -265,6 +265,7 @@ void ActionUnit::loadDeltaTransfersFromJSON(const char* deltaJson)
         std::string sideStr = auJ["side"].get<std::string>();
         
         ActionUnitDelta auDelta;
+        auDelta.auId = auId;
         auDelta.side   = sideFromString(sideStr); 
 
         auto parseMuscles = [](const nlohmann::json& muscleArray,

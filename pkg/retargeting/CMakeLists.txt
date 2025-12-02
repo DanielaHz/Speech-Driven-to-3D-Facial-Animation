@@ -31,12 +31,12 @@ find_package(tinyobjloader CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
 # Tests executables
-add_executable(PixelMuxRetargetingTests)
-target_sources(PixelMuxRetargetingTests PRIVATE 
+add_executable(RetargetingTests)
+target_sources(RetargetingTests PRIVATE 
     ${PROJECT_SOURCE_DIR}/pkg/retargeting/tests/unit-tests/FacialMeshTest.cpp
     ${PROJECT_SOURCE_DIR}/pkg/retargeting/tests/unit-tests/ActionUnitTest.cpp
     ${PROJECT_SOURCE_DIR}/pkg/retargeting/tests/unit-tests/MathUtilsTest.cpp    
 )
 
-target_link_libraries(PixelMuxRetargetingTests PRIVATE retargeting_lib tinyobjloader::tinyobjloader nlohmann_json::nlohmann_json glm::glm GTest::gtest GTest::gtest_main)
-gtest_discover_tests(PixelMuxRetargetingTests)
+target_link_libraries(RetargetingTests PRIVATE retargeting_lib tinyobjloader::tinyobjloader nlohmann_json::nlohmann_json glm::glm GTest::gtest GTest::gtest_main)
+gtest_discover_tests(RetargetingTests)

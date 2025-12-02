@@ -38,7 +38,7 @@ echo ------------------
 echo    Unit Tests
 echo ------------------
 echo Unit tests PKG folder
-TEST_EXEC="$BUILD_DIR/pkg/retargeting/PixelMuxRetargetingTests"
+TEST_EXEC="$BUILD_DIR/pkg/retargeting/RetargetingTests"
 "$TEST_EXEC"
 
 

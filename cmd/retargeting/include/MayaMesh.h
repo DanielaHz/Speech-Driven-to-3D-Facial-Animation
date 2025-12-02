@@ -1,5 +1,5 @@
 #ifndef MAYAMESH_H_
-#define MAYAMESH_H
+#define MAYAMESH_H_
 
 #include <maya/MGlobal.h>
 #include <maya/MStringArray.h>

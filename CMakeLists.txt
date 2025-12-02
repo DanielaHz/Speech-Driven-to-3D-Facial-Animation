@@ -5,8 +5,8 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE AND DEFINED ENV{CMAKE_TOOLCHAIN_FILE})
    set(CMAKE_TOOLCHAIN_FILE $ENV{CMAKE_TOOLCHAIN_FILE})
 endif()
 
-project(PixelMuxRetargeting) #project name
-set(TargetName PixelMuxRetargeting) # executable name 
+project(Retargeting) #project name
+set(TargetName Retargeting) # executable name 
 
 # Shared C++ version settings
 set(CMAKE_CXX_STANDARD 17)

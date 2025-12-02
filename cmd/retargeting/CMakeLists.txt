@@ -1,7 +1,9 @@
 # Project plugin name
-project(PixelMuxPlugin)
+project(Retargeting-Plugin)
 
 # Qt configuration 
+set(CMAKE_PREFIX_PATH "~/Qt/6.5.3/gcc_64/lib/cmake")
+
 set(CMAKE_AUTOMOC ON)
 find_package(Qt6 COMPONENTS OpenGL Widgets QUIET)
 if (Qt6_FOUND)
@@ -18,11 +20,11 @@ find_package(tinyobjloader CONFIG REQUIRED)
 
 # Maya Devkit
 if(NOT DEVKIT_LOCATION)
-    message(FATAL_ERROR "DEVKIT_LOCATION no está definido. Usa -DDEVKIT_LOCATION=...")
+    message(FATAL_ERROR "DEVKIT_LOCATION it's not defined use -DDEVKIT_LOCATION=...")
 endif()
 
-find_package(Qt5 REQUIRED COMPONENTS Widgets Core)
-qt5_add_resources(RESOURCES static/resources.qrc)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Core)
+qt6_add_resources(RESOURCES static/resources.qrc)
  
 set(DEVKIT_INCLUDE "${DEVKIT_LOCATION}/include")
 set(DEVKIT_LIB "${DEVKIT_LOCATION}/lib")
@@ -84,4 +86,4 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 # To make sure the plugin is compiling with c++17
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES)
 
-target_link_libraries(${PROJECT_NAME} retargeting_lib glm::glm Qt5::Widgets Qt5::Core tinyobjloader::tinyobjloader)
+target_link_libraries(${PROJECT_NAME} retargeting_lib glm::glm Qt6::Core Qt6::Widgets Qt6::Gui tinyobjloader::tinyobjloader)
